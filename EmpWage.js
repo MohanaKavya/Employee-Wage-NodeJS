@@ -9,7 +9,7 @@
         console.log("Employee is Present");
     }
 }
-//  UC_6 Store daily wage along with total wage
+//UC_8 Storing the day and daily wage along with total wage
     const IS_PART_TIME = 0;
     const IS_FULL_TIME = 1;
     const PART_TIME_HOURS = 4;
@@ -35,11 +35,14 @@
     while (employeeHours <= MAX_HOURS_MONTHLY && employeeWorkingDays <= NO_OF_WORKING_DAYS) {
         employeeWorkingDays++;
         let employeeCheck = Math.floor(Math.random() * 10) % 2;
-        employeeHours += getWorkingHours(employeeCheck);
-        employeeDailyWage.push(getWage(getWorkingHours(employeeCheck)));
+        let employeeWorkingHours = getWorkingHours(employeeCheck);
+        employeeHours += employeeWorkingHours;
+        employeeDailyWage.push(getWage(employeeWorkingHours));
+        employeeDailyWageMap.set(employeeWorkingDays,getWage(employeeWorkingHours));
     }
     let employeeWage = getWage(employeeHours);
     console.log("Working Hours : " + employeeHours + ", Working Days : " + employeeWorkingDays + ", Employee wage for 20 Days: $" + employeeWage);
+    console.log(employeeDailyWageMap);
 
     //Arrays helper functions
 //UC_7A Calculate total wage using Array forEach traversal or reduce method
